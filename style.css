@@ -1,0 +1,27 @@
+body{
+    background-color: lightgray;
+}
+h1{
+    font-size:32px;
+    font-weight: bold;
+}
+.container{
+    width: 250px;
+    height:400px
+}
+#badge{
+    width: 150px;
+    height:50px;
+    background-color: red;
+    border-radius:  10px;
+    text-align :center;
+    padding:10px;
+    
+}
+#info{
+    margin-top: 20px;
+}
+#copyright{
+    font-size: 15px;
+    opacity: 0.5;
+}
