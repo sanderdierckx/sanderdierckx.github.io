@@ -9,8 +9,8 @@ h1{
     -webkit-text-stroke:2px blue;
 }
 .container{
-    width: 50px;
-    height:80px
+    width: 75px;
+    height:105px
 }
 #badge{
     width: 100px;
@@ -30,14 +30,36 @@ h1{
     opacity: 0.5;
 }
 .flex-container{
- width: 250px;
- height:750px;
+ width: 300px;
+ height:900px;
  border-radius:  10px;
  text-align :center;
  align-content: left;
  background-color: red;
+ -webkit-box-shadow: 5px 5px 15px 5px #6C6C6C; 
+box-shadow: 5px 5px 15px 5px #6C6C6C;
 
 }
-#aanvallen{
-    align-content: left;
+#list-aanvallen{
+    widows: 4px;0%; 
+    float:left;
+}
+#list-levels{
+    width:10%; 
+    float:right;
+    list-style-type: none;
+    margin-top: 35px;
+}
+#level{
+    margin-top: 0px;
+}
+#naam{
+    width:10%; 
+    float:left;
+    clear:left;
+}
+#id {
+    width:20%; 
+    float:right;
+    clear: right;
 }

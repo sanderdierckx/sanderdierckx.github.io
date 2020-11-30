@@ -21,7 +21,9 @@
         <h1>PokéDex</h1>
         <div class="flex-container">
             <div>
-                <h2>{{name}} {{id}}</h2>
+                <h2 id="naam">{{name}}</h2>
+                <h2 id="id"> #{{id}}</h2>
+
             </div>
             <img :src="spriteUrl" alt="" class="container">
 
@@ -31,10 +33,15 @@
             <div>
                 <p id="info">{{flavor}}</p>
             </div>
-            <div id="aanvallen">
-                <ul>
+            <div id="aanvallen-levels">
+                <ul id="list-aanvallen">
                     <li v-for="move in moves" :key="moves.name">
                         <p>{{move.name}}</p>
+                    </li>
+                </ul>
+                <ul id="list-levels">
+                    <li v-for="move in moves" :key="moves.level">
+                        <p id="level">{{move.level}}</p>
                     </li>
                 </ul>
             </div>
