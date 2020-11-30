@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne+Mono&display=swap"
+        rel="stylesheet">
     <script defer src="pokemon.js"></script>
     <title>Pokédex</title>
 </head>
@@ -16,31 +19,36 @@
         <input type="number" v-model="id" v-on:input="getPokemon(id)">
         <button v-on:click=" next">Volgende</button>
         <h1>PokéDex</h1>
-        <h2>{{name}} zijn Pokédex nummer is {{id}} </h2>
-        <img :src="spriteUrl" alt="" class="container">
+        <div class="flex-container">
+            <div>
+                <h2>{{name}} {{id}}</h2>
+            </div>
+            <img :src="spriteUrl" alt="" class="container">
 
-        <div id="badge">
-            <p>{{type}}</p>
-        </div>
-        <div>
-            <p id="info">{{flavor}}</p>
-        </div>
-        <div>
-            <ul>
-                <p>{{moves[0].name}}</p>
-                <p>{{moves[1].name}}</p>
-                <p>{{moves[2].name}}</p>
-                <p>{{moves[3].name}}</p>
-                <p>{{moves[4].name}}</p>
-            </ul>
-        </div>
-        <div>
-            <a :href="'https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon#' + name">wikipedia</a>
+            <div id="badge">
+                <p>{{type}}</p>
+            </div>
+            <div>
+                <p id="info">{{flavor}}</p>
+            </div>
+            <div id="aanvallen">
+                <ul>
+                    <li v-for="move in moves" :key="moves.name">
+                        <p>{{move.name}}</p>
+                    </li>
+                </ul>
+            </div>
 
         </div>
-        <footer>
-            <p id="copyright">© sander dierckx</p>
-        </footer>
+
+        <div>
+            <footer>
+                <a :href="'https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon#' + name">wikipedia</a>
+                <p id="copyright">© sander dierckx</p>
+            </footer>
+
+        </div>
+    </div>
     </div>
 </body>
 
