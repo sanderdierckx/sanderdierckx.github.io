@@ -1,26 +1,183 @@
 body{
     background-color: lightgray;
     font-family: 'Share Tech Mono', monospace;
+    margin-left: 40%;
+}
+#input{
+    width: 50px;
+}
+#controls{
+   margin-left: 5%;
+}
+button{
+    background-color:yellow;
+	border-radius:6px;
+	border:5px solid blue;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family: 'Share Tech Mono', monospace;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
 }
 h1{
     font-size:50px;
     font-weight: bold;
     color:yellow;
     -webkit-text-stroke:2px blue;
+    margin-left: 5%;
 }
 .container{
     width: 75px;
     height:105px
 }
-#badge{
+#ground{
     width: 100px;
     height:30px;
-    background-color: blue;
     border-radius:  10px;
     text-align :center;
-
     margin-left: 30%;
-    
+    background-color:brown;
+}
+#normal{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgba(243, 255, 8, 0.967);
+
+}
+#fighting{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: darkslategray;
+}
+#flying{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: lightblue;
+}
+#poison{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: purple;
+}
+#rock{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: darkgray;
+}
+#bug{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(99, 84, 3);
+}
+#ghost{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: white;
+}
+#steel{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(34, 34, 34);
+}
+#fire{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(255, 145, 0);
+}
+#water{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: navy;
+}
+#grass{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: green;
+}
+#electric{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(0, 116, 170);
+}
+#psychic{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(163, 19, 115);
+}
+#ice{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: darkblue;
+}
+#dragon{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: darkgoldenrod;
+}
+#fairy{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: darkorchid;
+}
+#dark{
+    width: 100px;
+    height:30px;
+    border-radius:  10px;
+    text-align :center;
+    margin-left: 30%;
+    background-color: rgb(0, 0, 0);
+    color:white;
 }
 #info{
     margin-top: 20px;
@@ -55,11 +212,11 @@ box-shadow: 5px 5px 15px 5px #6C6C6C;
 }
 #naam{
     width:10%; 
-    float:left;
+
     clear:left;
 }
 #id {
     width:20%; 
-    float:right;
-    clear: right;
+    padding-left: 225px;
+    margin-top: -40px;
 }

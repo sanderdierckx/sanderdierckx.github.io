@@ -15,9 +15,12 @@
 
 <body>
     <div id="vue">
-        <button v-on:click="prev">Vorige</button>
-        <input type="number" v-model="id" v-on:input="getPokemon(id)">
-        <button v-on:click=" next">Volgende</button>
+        <div id="controls">
+            <button v-on:click="prev">Vorige</button>
+            <input id="input" type="number" v-model="id" v-on:input="getPokemon(id)">
+            <button v-on:click=" next">Volgende</button>
+
+        </div>
         <h1>PokéDex</h1>
         <div class="flex-container">
             <div>
@@ -27,8 +30,8 @@
             </div>
             <img :src="spriteUrl" alt="" class="container">
 
-            <div id="badge">
-                <p>{{type}}</p>
+            <div class="badge">
+                <p :id="type">{{type}}</p>
             </div>
             <div>
                 <p id="info">{{flavor}}</p>
