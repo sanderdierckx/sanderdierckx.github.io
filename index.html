@@ -15,13 +15,13 @@
 
 <body>
     <div id="vue">
+        <h1>PokéDex</h1>
         <div id="controls">
             <button v-on:click="prev">Vorige</button>
             <input id="input" type="number" v-model="id" v-on:input="getPokemon(id)">
             <button v-on:click=" next">Volgende</button>
 
         </div>
-        <h1>PokéDex</h1>
         <div class="flex-container">
             <div>
                 <h2 id="naam">{{name}}</h2>

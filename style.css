@@ -7,7 +7,7 @@ body{
     width: 50px;
 }
 #controls{
-   margin-left: 5%;
+   margin-left: 0%;
 }
 button{
     background-color:yellow;
@@ -23,10 +23,10 @@ button{
 	text-decoration:none;
 }
 h1{
-    font-size:50px;
-    font-weight: bold;
+    font-size:75px;
+    font-weight: 900;
     color:yellow;
-    -webkit-text-stroke:2px blue;
+    -webkit-text-stroke:3px blue;
     margin-left: 5%;
 }
 .container{
@@ -197,8 +197,12 @@ h1{
 box-shadow: 5px 5px 15px 5px #6C6C6C;
 
 }
+.flex-container:hover{
+    transform: rotate(-5deg);
+}
 #list-aanvallen{
-    widows: 4px;0%; 
+    widows: 4px; 
+text-align: left;
     float:left;
 }
 #list-levels{
@@ -211,12 +215,12 @@ box-shadow: 5px 5px 15px 5px #6C6C6C;
     margin-top: 0px;
 }
 #naam{
-    width:10%; 
-
+    width:40%; 
     clear:left;
+    padding-top: 50px;
 }
 #id {
     width:20%; 
     padding-left: 225px;
-    margin-top: -40px;
+    margin-top: -45px;
 }
