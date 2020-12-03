@@ -22,6 +22,7 @@
             <button v-on:click=" next">Volgende</button>
 
         </div>
+
         <div class="flex-container">
             <div>
                 <h2 id="naam">{{name}}</h2>
@@ -50,14 +51,15 @@
             </div>
 
         </div>
+    </div>
 
-        <div>
-            <footer>
-                <a :href="'https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon#' + name">wikipedia</a>
-                <p id="copyright">© sander dierckx</p>
-            </footer>
+    <div>
+        <footer>
+            <a :href="'https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon#' + name">wikipedia</a>
+            <p id="copyright">© sander dierckx</p>
+        </footer>
 
-        </div>
+    </div>
     </div>
     </div>
 </body>

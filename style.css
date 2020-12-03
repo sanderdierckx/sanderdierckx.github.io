@@ -1,3 +1,6 @@
+*{
+    justify-content: center;
+}
 body{
     background-color: lightgray;
     font-family: 'Share Tech Mono', monospace;
@@ -7,7 +10,7 @@ body{
     width: 50px;
 }
 #controls{
-   margin-left: 0%;
+  
 }
 button{
     background-color:yellow;
@@ -27,7 +30,6 @@ h1{
     font-weight: 900;
     color:yellow;
     -webkit-text-stroke:3px blue;
-    margin-left: 5%;
 }
 .container{
     width: 75px;
