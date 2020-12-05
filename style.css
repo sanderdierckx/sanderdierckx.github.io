@@ -35,149 +35,83 @@ h1{
     width: 75px;
     height:105px
 }
-#ground{
+.typeBadge{
     width: 100px;
     height:30px;
     border-radius:  10px;
     text-align :center;
     margin-left: 30%;
+}
+#ground{
     background-color:brown;
 }
 #normal{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgba(243, 255, 8, 0.967);
 
 }
 #fighting{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: darkslategray;
 }
 #flying{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: lightblue;
 }
 #poison{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: purple;
 }
 #rock{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: darkgray;
 }
 #bug{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgb(99, 84, 3);
 }
 #ghost{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: white;
 }
 #steel{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgb(34, 34, 34);
 }
 #fire{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+  
     background-color: rgb(255, 145, 0);
 }
 #water{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: navy;
 }
 #grass{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: green;
 }
 #electric{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgb(0, 116, 170);
 }
 #psychic{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgb(163, 19, 115);
 }
 #ice{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: darkblue;
 }
 #dragon{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: darkgoldenrod;
 }
 #fairy{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: darkorchid;
 }
 #dark{
-    width: 100px;
-    height:30px;
-    border-radius:  10px;
-    text-align :center;
-    margin-left: 30%;
+
     background-color: rgb(0, 0, 0);
     color:white;
 }
