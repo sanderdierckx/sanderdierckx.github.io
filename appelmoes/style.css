@@ -1,0 +1,75 @@
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.flex-container-inner-box1,
+.flex-container-inner-box2,
+.flex-container-inner-box3 {
+    width : 500px;
+    background-color: blue;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container-inner-box1 .info,
+.flex-container-inner-box2 .info,
+.flex-container-inner-box3 .info {
+    width: 250px;
+    display: flex;
+    align-items: left;
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+    font-size:20px ;
+    padding-left: 20px;
+}
+ .flex-container-inner-box1 .titel,
+ .flex-container-inner-box2 .titel,
+ .flex-container-inner-box3 .titel{
+    width: 250px;
+    display: flex;
+    align-items: left;
+    font-family: 'PT Serif', serif;
+    font-weight: 1000;
+    font-size: 50px;
+    padding-left: 20px;
+}
+
+.flex-container-inner-box1 img,
+.flex-container-inner-box2 img,
+.flex-container-inner-box3 img {
+    width: 250px;
+}
+
+.flex-container-inner-box1 button,
+.flex-container-inner-box2 button,
+.flex-container-inner-box3 button {
+    height: 60px;
+    width: 60px;
+    align-items: center;
+    margin-right: 40px;
+    border-radius: 50%;
+    background-image: url(\..\..\img\like.png);
+}
+
+.flex-container-inner-box1 button:hover,
+.flex-container-inner-box2 button:hover,
+.flex-container-inner-box3 button:hover {
+    background-color: red;
+    height: 58px;
+    width: 58px;
+    border-color: red;
+}
+.flex-container .flex-container-inner-box1{
+    order: 2;
+}
+.flex-container .flex-container-inner-box2{
+    order: 3;
+}
+.flex-container .flex-container-inner-box3{
+    order: 1;
+}
