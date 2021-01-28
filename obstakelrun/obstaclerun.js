@@ -2,30 +2,42 @@ let matrix = new Matrix(10, 10);
 
 let w = matrix.width
 let h = matrix.height
-let playerCor = [72, 82, 92]
-let obstakels = [0,0,0,0]
-let randomInt = [68,78,88]
+let playerCor = [62, 72, 82]
+let obstakels = [0, 0, 0, 0]
+let randomInt = [58, 68, 78]
+let wolk = [14,15,24,25,23,26]
 let oldTime = 0
-let jumpDelay = 750
+let jumpDelay = 1000
+let rate = 5
+let score = 0
+let highScore = 0
+let start = false
 
 
 function setup() {
   matrix.init()
-  frameRate(7)
+  frameRate(rate)
   calcObstakel(random(randomInt))// obstakel aan maken op random plaats (bop de onderste 3 rijen)
 }
 function draw() {
   matrix.clear()
   let x = readJoystickX()
   let y = readJoystickY()
-  if (playerCor[0] == 52 ||playerCor[0] == 90) {//zien of de speler gesprongen heeft of gebukt heeft 
-    if (checkTime()) {// als 750 milli seconden voorbij is naar beneden gaan
-      playerNormal()
-  } 
+  if (start == true) {
+
+    if (playerCor[0] == 42 || playerCor[0] == 80) {//zien of de speler gesprongen heeft of gebukt heeft 
+      if (checkTime()) {// als 750 milliseconden voorbij is naar beneden gaan
+        playerNormal()
+      }
+    }
+    showPlayer()// de coördinaten van de speler laten branden
+    moveObstakels(obstakels)// obstakels laten bewegen
+    moveObstakels(wolk)
+    botsing()// controleren op botsing
+    scoreCount()
+    speedUp()
+    drawGras()
   }
-  showPlayer()// de coördinaten van de speler laten branden
-  moveObstakels()// obstakels laten bewegen
-  botsing()// controleren op botsing
   matrix.show()
 }
 
@@ -40,40 +52,46 @@ function setLedNr(nr, state, Color) {// nummer van ledje vervagen in rij en colo
 }
 function keyPressed() {
   if (keyCode === 32) {
-    if (playerCor[0] == 54) {// als er al gesprongen is niet meer springen
+    if (playerCor[0] == 42) {// als er al gesprongen is niet meer springen
       return
     }
     oldTime = millis()
     for (let cor = 0; cor < playerCor.length; cor++) {// speler 2 rijen naar boven plaatsen
       playerCor[cor] -= 20
-    }  
+    }
   }
   if (keyCode == DOWN_ARROW) {
-    if (playerCor[0] == 92) {// als hij al gebukt is niet meer kunnen bukken
+    if (playerCor[0] == 80) {// als hij al gebukt is niet meer kunnen bukken
       return
     }
-    oldTime=millis()
-    playerCor[0] = 90// gebukte coördinaten
-    playerCor[1] = 91
+    oldTime = millis()
+    playerCor[0] = 80// gebukte coördinaten
+    playerCor[1] = 81
+  }
+  if (keyCode === 83) {
+    start = true
   }
 }
 
-function moveObstakels() {
-    for (let led = 0; led < obstakels.length; led++) {
-      obstakels[led] = obstakels[led] - 1// elke led van het obstakel 1 led naar links plaatsen
-      let rowNew = Math.floor(obstakels[led] / h)// de rij van nieuwe positie
-      let rowOld = Math.floor((obstakels[led] + 1) / h)// rij van oude positie
-
-      if (rowNew != rowOld) {// als obstakel op het einde is terug naar begin plaatsen
-        obstakels[led] = obstakels[led] + w
-        if (led == 3) {// als alle leds van scherm zijn nieuwe random positei geven
+function moveObstakels(array) {
+  for (let led = 0; led < array.length; led++) {
+    array[led] = array[led] - 1// elke led van het obstakel/wolk 1 led naar links plaatsen
+    let rowNew = Math.floor(array[led] / h)// de rij van nieuwe positie
+    let rowOld = Math.floor((array[led] + 1) / h)// rij van oude positie
+    if (rowNew != rowOld) {// als obstakel/wolk op het einde is terug naar begin plaatsen
+      array[led] = array[led] + w
+      if (led == array.length - 1) {// als alle leds van scherm zijn nieuwe random positie geven
+        if (array == obstakels) {
           calcObstakel(random(randomInt))
-          setLedNr(obstakels[led], true, "red")
-          return
+          setLedNr(array[led], true, "red")
         }
-      }
-setLedNr(obstakels[led], true, "red")
-  }
+        else {
+          setLedNr(array[led], true, "white")}
+        return }}
+    if (array == obstakels) {
+      setLedNr(array[led], true, "red")}
+    else {
+      setLedNr(array[led], true, "white")}}
 }
 function showPlayer() {// coördinaten speler laten zien
   playerCor.forEach(c => {
@@ -86,9 +104,9 @@ function checkTime() {
   }
 }
 function playerNormal() {// speler naar zijn orginele coördinaten zetten
-  playerCor[0] = 72
-  playerCor[1] = 82
-  playerCor[2] = 92
+  playerCor[0] = 62
+  playerCor[1] = 72
+  playerCor[2] = 82
 }
 function calcObstakel(firstled) {//obstakel plaatsen aan de hand van 1ste led
   obstakels[0] = firstled
@@ -99,18 +117,56 @@ function calcObstakel(firstled) {//obstakel plaatsen aan de hand van 1ste led
 function botsing() {
   obstakels.forEach(obstakel => {
     playerCor.forEach(cor => {
-      if (obstakel == cor) {// coördinaten van speler en obstakel vergelijken
-        console.log("kaka");
-        setAll(true,"red")
+      if (obstakel == cor) {// coördinaten van speler en obstakel vergelijken 
+        setAll(true, "red")
+        highScore = score
+        score = 0
+        start = false
+        rate = 5
       }
     })
   })
-} 
-function setAll(state, Color){
+}
+function setAll(state, Color) {// zet alle ledjes aan of uit
   for (let row = 0; row < w; row++) {
     for (let colom = 0; colom < h; colom++) {
-      matrix.setLed(row,colom,state,Color)
+      matrix.setLed(row, colom, state, Color)
     }
+
+  }
+}
+
+//score tellen
+function scoreCount() {
+  obstakels.forEach(obstakel => {
+    if (obstakel<=80&&obstakel>=60) {
+      score += 5
+      if (highScore <= score) {
+        highScore = score
+      }
+
+    }
+    console.log('score:', score);
+    console.log('highScore:', highScore);
+  })
+}
+// frame rate hoger zette
+function speedUp() {
+  if (score >= 95 && score <= 105 ||score >= 195 && score <= 205||score>=495&&score<=505||score >=745&&score<=755||score >=995&&score<=1005) {
+    changeStats()
+  }
+}
+function changeStats(){
+  rate += 1
+  jumpDelay -= 150
+  console.log('jumpDelay:', jumpDelay);
+  console.log('rate:', rate);
+  frameRate(rate)
+  score += 15
+}
+function drawGras() {
+  for (let index = 0; index < 10; index++) {
+    showLed(9,index,true,"green")
     
   }
 }
