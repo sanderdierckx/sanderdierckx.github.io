@@ -123,6 +123,7 @@ function botsing() {
         score = 0
         start = false
         rate = 5
+        jumpDelay =1000
       }
     })
   })
