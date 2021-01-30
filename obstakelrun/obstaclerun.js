@@ -52,7 +52,7 @@ function setLedNr(nr, state, Color) {// nummer van ledje vervagen in rij en colo
 }
 function keyPressed() {
   if (keyCode === 32) {
-    if (playerCor[0] == 42) {// als er al gesprongen is niet meer springen
+    if (playerCor[0] != 62) {// als er al gesprongen is niet meer springen
       return
     }
     oldTime = millis()
@@ -61,7 +61,7 @@ function keyPressed() {
     }
   }
   if (keyCode == DOWN_ARROW) {
-    if (playerCor[0] == 80) {// als hij al gebukt is niet meer kunnen bukken
+    if (playerCor[0] != 62) {// als hij al gebukt is niet meer kunnen bukken
       return
     }
     oldTime = millis()
@@ -119,7 +119,10 @@ function botsing() {
     playerCor.forEach(cor => {
       if (obstakel == cor) {// coördinaten van speler en obstakel vergelijken 
         setAll(true, "red")
-        highScore = score
+        if (score > highScore) {
+          
+          highScore = score
+        }
         score = 0
         start = false
         rate = 5
@@ -140,12 +143,8 @@ function setAll(state, Color) {// zet alle ledjes aan of uit
 //score tellen
 function scoreCount() {
   obstakels.forEach(obstakel => {
-    if (obstakel<=80&&obstakel>=60) {
+    if (obstakel==80||obstakel==70||obstakel==60) {
       score += 5
-      if (highScore <= score) {
-        highScore = score
-      }
-
     }
     console.log('score:', score);
     console.log('highScore:', highScore);
@@ -160,8 +159,8 @@ function speedUp() {
 function changeStats(){
   rate += 1
   jumpDelay -= 150
-  console.log('jumpDelay:', jumpDelay);
-  console.log('rate:', rate);
+  //console.log('jumpDelay:', jumpDelay);
+  //console.log('rate:', rate);
   frameRate(rate)
   score += 15
 }
