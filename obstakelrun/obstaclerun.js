@@ -76,7 +76,6 @@ function keyPressed() {
 
 function moveObstakels(array) {
   for (let led = 0; led < array.length; led++) {
-    console.log('led:', array[led]);
     array[led] = array[led] - 1// elke led van het obstakel/wolk 1 led naar links plaatsen
     let rowNew = Math.floor(array[led] / h)// de rij van nieuwe positie
     let rowOld = Math.floor((array[led] + 1) / h)// rij van oude positie
@@ -85,13 +84,13 @@ function moveObstakels(array) {
       if (led == array.length - 1) {// als alle leds van scherm zijn nieuwe random positie geven
         if (array == obstakels) {
           calcObstakel(random(randomInt))
-          setLedNr(array[led], true, "red")
+          setLedNr(array[led], true, "rgb(69,69,69)")
         }
         else {
           setLedNr(array[led], true, "white")}
         return }}
     if (array == obstakels) {
-      setLedNr(array[led], true, "red")
+      setLedNr(array[led], true, "rgb(69,69,69)")
     }
     else {
       setLedNr(array[led], true, "white")}}
@@ -149,8 +148,8 @@ function scoreCount() {
     if (obstakel==80||obstakel==70||obstakel==60) {
       score += 5
     }
-    //console.log('score:', score);
-    //console.log('highScore:', highScore);
+    console.log('score:', score);
+    console.log('highScore:', highScore);
   })
 }
 // frame rate hoger zette
@@ -162,8 +161,7 @@ function speedUp() {
 function changeStats(){
   rate += 1
   jumpDelay -= 150
-  //console.log('jumpDelay:', jumpDelay);
-  //console.log('rate:', rate);
+
   frameRate(rate)
   score += 15
 }
