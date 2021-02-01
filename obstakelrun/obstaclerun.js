@@ -30,6 +30,7 @@ function draw() {
         playerNormal()
       }
     }
+    setAll(true, "rgb(0,183,255)")// achtergrond blauw zetten
     showPlayer()// de coördinaten van de speler laten branden
     moveObstakels(obstakels)// obstakels laten bewegen
     moveObstakels(wolk)
@@ -75,6 +76,7 @@ function keyPressed() {
 
 function moveObstakels(array) {
   for (let led = 0; led < array.length; led++) {
+    console.log('led:', array[led]);
     array[led] = array[led] - 1// elke led van het obstakel/wolk 1 led naar links plaatsen
     let rowNew = Math.floor(array[led] / h)// de rij van nieuwe positie
     let rowOld = Math.floor((array[led] + 1) / h)// rij van oude positie
@@ -89,7 +91,8 @@ function moveObstakels(array) {
           setLedNr(array[led], true, "white")}
         return }}
     if (array == obstakels) {
-      setLedNr(array[led], true, "red")}
+      setLedNr(array[led], true, "red")
+    }
     else {
       setLedNr(array[led], true, "white")}}
 }
@@ -111,8 +114,8 @@ function playerNormal() {// speler naar zijn orginele coördinaten zetten
 function calcObstakel(firstled) {//obstakel plaatsen aan de hand van 1ste led
   obstakels[0] = firstled
   obstakels[1] = obstakels[0] + 1
-  obstakels[3] = obstakels[0] + w
-  obstakels[4] = obstakels[1] + w
+  obstakels[2] = obstakels[0] + w
+  obstakels[3] = obstakels[1] + w
 }
 function botsing() {
   obstakels.forEach(obstakel => {
@@ -146,8 +149,8 @@ function scoreCount() {
     if (obstakel==80||obstakel==70||obstakel==60) {
       score += 5
     }
-    console.log('score:', score);
-    console.log('highScore:', highScore);
+    //console.log('score:', score);
+    //console.log('highScore:', highScore);
   })
 }
 // frame rate hoger zette
