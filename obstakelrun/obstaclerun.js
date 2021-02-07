@@ -10,8 +10,8 @@ let w = matrix.width
 let h = matrix.height
 let playerCor = [150, 166, 182]
 let obstakels = [0, 0, 0, 0]
-let randomIntObstakel = [172, 156,140]
-let randomIntWolk = [92,76,60]
+let randomIntObstakel = [173, 157,141]
+let randomIntWolk = [94,78,62]
 let wolk = [57,58,72,73,74,75]
 let oldTime = 0
 let jumpDelay = 1000
@@ -19,7 +19,10 @@ let rate = 5
 let score = 0
 let highScore = 0
 let start = false
-
+let speedUps = [100, 200, 500, 750, 1000]
+let speedUpCount = 0
+let oldScore = 0
+let aantalRijen = 0
 
 function setup() {
   matrix.init()
@@ -49,6 +52,7 @@ function draw() {
     speedUp()
     drawGras()
     showScore()
+    scoreLeds()
   }
   matrix.show()
 }
@@ -88,33 +92,28 @@ function keyPressed() {
 // obstakels/ wolkjes naar links opschuiven
 function moveObstakels(array) {
   for (let led = 0; led < array.length; led++) {
-    array[led] = array[led] - 1// elke led van het obstakel/wolk 1 led naar links plaatsen
-    let rowNew = Math.floor((array[led]-3) / h)// de rij van nieuwe positie
-    let rowOld = Math.floor((array[led] -2) / h)// rij van oude positie
-    if (rowNew != rowOld) {// als obstakel/wolk op het einde is terug naar begin plaatsen
-      array[led] = array[led] + w
-      if (led == array.length-4 && array == obstakels) {// als alle leds van scherm zijn nieuwe random positie geven
-        
-        calcObstakel(random(randomIntObstakel),"obstakel")
-        obstakels.forEach(obstakel => {
-          setLedNr(obstakel, false, 'rgb(34,34,34)')
-        })
-        return
-      }
-      if (led == array.length-6 && array == wolk) {
-        calcObstakel(random(randomIntWolk),"wolk")
-        wolk.forEach(w => { 
-          setLedNr(w, true, "white")
-        })
-        return
+    array[led] = array[led] - 1
+    let col = array[led]%w
+    if (led == array.length-1) {
+      let rowNew = Math.floor((array[led]-3) / h)// de rij van nieuwe positie
+      let rowOld = Math.floor((array[led] - 2) / h)// rij van oude positie
+      if (rowNew != rowOld) {
+        if (array == wolk) {
+          calcObstakel(random(randomIntWolk), "wolk")
+        } else {
+          calcObstakel(random(randomIntObstakel), "obstakel")
+        }
       }
     }
-
-    if (array == obstakels) {// de juiste kleur aan het object geven
-      setLedNr(array[led], false, 'rgb(34,34,34)')
+    if (array == wolk) {
+      setLedNr(array[led],true,"white")
+    } else {
+      setLedNr(array[led],true,"red")
     }
-    else {
-      setLedNr(array[led], true, "white")}}
+    if (col < 3||col > 12) {
+      setLedNr(array[led],false,"yellow")
+    }
+  }
 }
 function showPlayer() {// coördinaten speler laten zien en de kleur van de speler is geel
   playerCor.forEach(c => {
@@ -131,14 +130,14 @@ function playerNormal() {// speler naar zijn orginele coördinaten zetten
   playerCor[1] = 166
   playerCor[2] = 182
 }
-function calcObstakel(firstled, shape) {//obstakel plaatsen aan de hand van 1ste led
-  if (shape == "obstakel") {
+function calcObstakel(firstled, shape) {//obstakels en wolken plaatsen aan de hand van de eerste led
+  if (shape == "obstakel") {//ostakel plaaten aan de hand van de eerste led
     obstakels[0] = firstled
     obstakels[1] = obstakels[0] + 1
     obstakels[2] = obstakels[0] + w
     obstakels[3] = obstakels[1] + w  
   }
-  else {
+  else {//wolk plaatsen aan de hand van de eerste led
     wolk[0] = firstled
     wolk[1] = wolk[0] + 1
     wolk[2] = (wolk[0] + w) - 1
@@ -156,13 +155,19 @@ function botsing() {
           
           highScore = score
         }
-        score = 0// alle waarden terug naar het orginele zetten
-        start = false
-        rate = 5
-        jumpDelay =1000
+        reset()
       }
     })
   })
+}
+// alle waarden terug naar het orginele zetten
+function reset() {
+  score = 0
+        start = false
+        rate = 5
+        jumpDelay =1000
+        oldScore = 0
+        aantalRijen = 0
 }
 function setAll(state, Color) {// zet alle ledjes aan of uit
   for (let row = 0; row < w; row++) {
@@ -176,15 +181,17 @@ function setAll(state, Color) {// zet alle ledjes aan of uit
 //score tellen
 function scoreCount() {
   obstakels.forEach(obstakel => {
-    if (obstakel==148||obstakel==180||obstakel==164) {// als obstakel op het einde is score + 5
+    if (obstakel==179||obstakel==163||obstakel==147||obstakel==131) {// als obstakel op het einde is score + 5
       score += 2
     }
   })
 }
 // frame rate hoger zette
 function speedUp() {
-  if (score >= 95 && score <= 105 ||score >= 195 && score <= 205||score>=495&&score<=505||score >=745&&score<=755||score >=995&&score<=1005) {// versnellen bij bepaalde score
+  if (score >= speedUps[speedUpCount]-5 && score <= speedUps[speedUpCount]+5){// versnellen bij bepaalde score
     changeStats()
+    speedUpCount += 1
+    aantalRijen = 0
   }
 }
 function changeStats(){
@@ -192,7 +199,7 @@ function changeStats(){
   jumpDelay -= 150//springen korter maken 
 
   frameRate(rate)
-  score += 15// score +15 zodat deze functie niet opnieuw word aangeroepen
+  score += 16// score +16 zodat deze functie niet opnieuw word aangeroepen
 }
 function drawGras() {// onderste rij groen maken
   for (let index = 3; index < 13; index++) {
@@ -209,5 +216,23 @@ function setGrass() {//de rij van het gras berekenen
     for (let colom = 3; colom < 13; colom++){
       showLed(row,colom,true,"rgb(0,183,255)")
     }
+  }
+}
+function scoreLeds() {//berekken de score om dit in leds kunnen
+  
+  let scorePerRij = Math.floor((speedUps[speedUpCount + 1] - speedUps[speedUpCount]) / h)// aantal punten tot volgende update
+  if (score > oldScore + scorePerRij) {
+    oldScore = score
+    aantalRijen +=1
+  }
+  for (let rij = 15; rij > 15-aantalRijen; rij--) {
+    for (let colom = 0; colom < 16; colom++) {
+      if (rij > 2&&rij<13&&colom>2&&colom<13) {
+        continue
+      }
+      showLed(rij,colom,true,"yellow")
+      
+    }
+    
   }
 }
