@@ -1,0 +1,13 @@
+spatie => jumptime =0
+
+if(100 milliseconden gepaseerd) => jumpTime + 100
+
+Math.ceil(basisvorm(jumpTime))
+
+oldTime = millis()
+    oldTimejump = millis()
+    
+    for (let cor = 0; cor < playerCor.length; cor++) {   
+    playerCor[cor] -= 2*w
+      }
+    
