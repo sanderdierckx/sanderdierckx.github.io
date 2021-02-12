@@ -50,14 +50,13 @@ function draw() {
 
         if (checkTime(oldTime, jumpDelay / 100)) {// als @jumpdelay milliseconden voorbij is naar beneden gaan
           jumpTime += jumpDelay / 10
-          jumpStart(Math.ceil(basisvorm(jumpDelay - 100, jumpTime)) )
+          jumpStart(Math.ceil(basisvorm(jumpDelay - 100, jumpTime)))
         }
       }
     }
     setSky()
     showPlayer()
     moveObstakels(obstakels)
-
     moveObstakels(wolk)
     botsing()
     scoreCount()
@@ -94,7 +93,7 @@ function jumpStart(jumpHeight) {
       moveRow("down")
     } if (jumpTime == jumpDelay - 100) {
       jump = false
-      jumpTime=0
+      jumpTime = 0
     }
   }
 }
@@ -346,7 +345,7 @@ function scoreLeds() {
 }
 /**
  * stelt parabool op en geeft y waarde terug
- * @param {int} delay plaats tussen de 2 nulwaarde
+ * @param {int} delay  wanneer de parabool de x as moet snijden
  * @param {int} x om y waarde van deze x te berekenen
  */
 function basisvorm(delay, x) {
@@ -357,7 +356,7 @@ function basisvorm(delay, x) {
 }
 /**
  * x waarde berekenen aan de hand van zijn y waarde
- * @param {int(n)} y waarde waar je de x waarde van wilt weten
+ * @param {int} y waarde waar je de x waarde van wilt weten
  */
 function calcX(y) {
   return sqrt(((y - Top[1]) / a) - Top[0])
