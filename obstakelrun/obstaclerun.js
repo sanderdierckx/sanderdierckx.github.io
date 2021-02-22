@@ -155,7 +155,7 @@ function keyPressed() {
   if (keyCode === 83) {
     start = true
     let element = document.getElementById("speluitleg");
-    element.parentNode.removeChild(element);
+    element.className = "fade"
   }
 }
 /**

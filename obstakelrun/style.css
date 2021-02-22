@@ -29,6 +29,13 @@ h1 {
     font-weight: 600;
     text-align: center;
 }
+.fade{
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    -ms-transition: opacity 0.4s ease-out;
+    -moz-transition: opacity 0.4s ease-out;
+    -webkit-transition: opacity 0.4s ease-out;
+}
 .cr {
     font-size: .6em;
     color: #555;
