@@ -6,9 +6,9 @@
  * Engineering
  * V1.0
  */
-let matrix = new Matrix(16, 16);
-let w = matrix.width
-let h = matrix.height
+ let w = 16
+ let h = 16
+let matrix = new Matrix(w, h);
 let playerCor = [150, 166, 182]
 let obstakels = [0, 0, 0, 0]
 let randomIntObstakel = [173, 141]
@@ -17,6 +17,7 @@ let wolk = [57, 58, 72, 73, 74, 75]
 let oldTime = 0
 let jumpTime = 0
 let jump = false
+let dive = false
 let jumpDelay = 700
 let diveDelay = 1000
 let rate = 5
@@ -42,10 +43,11 @@ function draw() {
   matrix.clear()
   if (start == true) {
     
-    if (jump == true || playerCor[0] == 167) {//zien of de speler gesprongen heeft of gebukt is 
-      if (playerCor[0] == 167) {
+    if (jump == true || dive == true) {//zien of de speler gesprongen heeft of gebukt is 
+      if (dive == true) {
         if (checkTime(oldTime, diveDelay)) {
           playerNormal()
+          dive = false
         }
       } else {
 
@@ -65,8 +67,14 @@ function draw() {
     showScore()
     scoreLeds()
     speedUp()
+    matrix.show()
   }
-  matrix.show()
+  if (start == false) {
+    if (checkTime(oldTime, 2000) == true) {
+      reset()
+      matrix.show()
+    }
+  }
 }
 /**
  * zet de speler op de juiste hoogte als hij gesprongen heeft
@@ -88,7 +96,7 @@ function jumpStart(jumpHeight) {
       return
     } if (jumpHeight < 1 && jumpTime > (Top[0] * 2) - calcX(1) && playerCor[0] == 134) {
       moveRow("down")
-    } if (jumpTime == jumpDelay - 100) {
+    } if (jumpTime > jumpDelay - 200) {
       jump = false
       jumpTime = 0
     }
@@ -137,7 +145,7 @@ function setLedNr(nr, state, Color) {
  */
 function keyPressed() {
   if (keyCode === 32) {
-    if (playerCor[0] != 150) {// als er al gesprongen is niet meer springen
+    if (jump == true||dive ==true) {// als er al gesprongen is niet meer springen
       return
     }
     jump = true
@@ -145,11 +153,12 @@ function keyPressed() {
     jumpTime = 0
   }
   if (keyCode == DOWN_ARROW) {
-    if (playerCor[0] != 150) {// als hij al gebukt is niet meer kunnen bukken
+    if (dive==true||jump == true) {// als hij al gebukt is niet meer kunnen bukken
       return
     }
-    oldTime = millis()
     playerCor[0] = 167
+    dive = true
+    oldTime = millis()
 
   }
   if (keyCode === 83) {
@@ -201,9 +210,7 @@ function showPlayer() {// coördinaten speler laten zien en de kleur van de spel
  * @param {int} delaySize grote van de delay
  */
 function checkTime(time, delaySize) {
-  if (millis() > time + delaySize) {
-    return true
-  }
+  return millis() > time + delaySize
 }
 /**
  * coördinaten speler normaal zetten
@@ -241,13 +248,12 @@ function botsing() {
   obstakels.forEach(obstakel => {
     playerCor.forEach(cor => {
       if (obstakel == cor) {
-        setAll(true, "red")
+        start = false
+        oldTime = millis()
         if (score > highScore) {
-
-
           highScore = score
         }
-        reset()
+        //reset()
       }
     })
   })
@@ -256,6 +262,8 @@ function botsing() {
 function reset() {
   score = 0
   start = false
+  jump = false
+  dive = false
   rate = 5
   jumpDelay = 600
   diveDelay = 1000
@@ -263,6 +271,7 @@ function reset() {
   aantalRijen = 0
   speedUpCount = 0
   playerNormal()
+  calcObstakel(random(randomIntObstakel), "obstakel")
 }
 /**
  * alle ledjes in de zelfde kleur zetten
@@ -294,7 +303,7 @@ function speedUp() {
     aantalRijen = 0
   }
 }
-// bij speed up waarden aan passen
+// bij speed up waarden aanpassen
 function changeStats() {
   playerNormal()
   rate += 1
@@ -302,7 +311,7 @@ function changeStats() {
   diveDelay -= 150
   jump = false
   //jumpTime = 0
-  score = speedUps[speedUpCount] + 5// zorgen dat de functie niet opnieuw word aan geroepen
+  score = speedUps[speedUpCount] + 5// zorgen dat de functie niet opnieuw wordt aan geroepen
   frameRate(rate)
 }
 // onderste rij van speelveld groen maken
@@ -334,10 +343,9 @@ function scoreLeds() {
     scorePerRij = Math.floor((speedUps[speedUpCount] - speedUps[speedUpCount-1]) / h)//aantal punten nodig voor 1 rij
     
   }
-console.log('speedUpCount:', speedUpCount);
   if (score > oldScore + scorePerRij) {
     oldScore = score
-    aantalRijen += 1.262
+    aantalRijen += 1.26
   }
   for (let rij = 15; rij > 15 - aantalRijen; rij--) {
     for (let colom = 0; colom < 16; colom++) {
