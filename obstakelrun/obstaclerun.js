@@ -337,7 +337,7 @@ function scoreLeds() {
 console.log('speedUpCount:', speedUpCount);
   if (score > oldScore + scorePerRij) {
     oldScore = score
-    aantalRijen += 1
+    aantalRijen += 1.262
   }
   for (let rij = 15; rij > 15 - aantalRijen; rij--) {
     for (let colom = 0; colom < 16; colom++) {
