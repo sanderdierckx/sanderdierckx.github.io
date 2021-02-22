@@ -30,19 +30,27 @@ let oldScore = 0
 let aantalRijen = 0
 let Top = [0, 0]
 let a = 0
-
+let muziek
+let oofsound
+let levelupsound
 function setup() {
   matrix.init()
+  soundFormats('mp3')
+  muziek = loadSound('Eric Skiff - Underclocked NO COPYRIGHT 8-bit Music + Background.mp3')
+  oofsound = loadSound("Roblox Death Sound - OOF Sound Effect edit.mp3")
+  levelupsound = loadSound('Super Mario Level Up SFX on Massive AAX CIU110.mp3')
   frameRate(rate)
   calcObstakel(random(randomIntObstakel), "obstakel")// obstakel aan maken op random plaats (op de onderste tweedede tot vierde rijien)
-
+  
 }
 // loopt hele tijd
 function draw() {
-
   matrix.clear()
   if (start == true) {
-    
+    if (muziek.isPlaying() == false) {
+      muziek.play()
+  //muziek.volume(0.2)
+    }
     if (jump == true || dive == true) {//zien of de speler gesprongen heeft of gebukt is 
       if (dive == true) {
         if (checkTime(oldTime, diveDelay)) {
@@ -250,6 +258,8 @@ function botsing() {
       if (obstakel == cor) {
         start = false
         oldTime = millis()
+        muziek.stop()
+        oofsound.play()
         if (score > highScore) {
           highScore = score
         }
@@ -299,6 +309,7 @@ function scoreCount() {
 function speedUp() {
   if (score >= speedUps[speedUpCount] - 5 && score <= speedUps[speedUpCount] + 5) {
     changeStats()
+    levelupsound.play()
     speedUpCount += 1
     aantalRijen = 0
   }
