@@ -1,5 +1,6 @@
 /**
  * obstakel run
+ * een speler dat over en onder verschillende obstakels moet raken
  * @LanderLeysen
  * @SanderDierckx
  * Engineering
@@ -40,7 +41,7 @@ function draw() {
 
   matrix.clear()
   if (start == true) {
-
+    
     if (jump == true || playerCor[0] == 167) {//zien of de speler gesprongen heeft of gebukt is 
       if (playerCor[0] == 167) {
         if (checkTime(oldTime, diveDelay)) {
@@ -73,9 +74,6 @@ function draw() {
  */
 function jumpStart(jumpHeight) {
   if (jumpTime < Top[0]) {
-    console.log("ja")
-    console.log('jumpHeight:', jumpHeight);
-    console.log('jumpTime:', jumpTime);
     if (jumpHeight == 1 && jumpTime < calcX(1)) {
       moveRow("up")
     } if (jumpHeight == 2 && playerCor[0] == 134) {
@@ -89,7 +87,6 @@ function jumpStart(jumpHeight) {
       moveRow("down")
       return
     } if (jumpHeight < 1 && jumpTime > (Top[0] * 2) - calcX(1) && playerCor[0] == 134) {
-      console.log("hier");
       moveRow("down")
     } if (jumpTime == jumpDelay - 100) {
       jump = false
@@ -157,6 +154,8 @@ function keyPressed() {
   }
   if (keyCode === 83) {
     start = true
+    let element = document.getElementById("speluitleg");
+    element.parentNode.removeChild(element);
   }
 }
 /**
@@ -302,7 +301,7 @@ function changeStats() {
   jumpDelay -= 100
   diveDelay -= 150
   jump = false
-  jumpTime = 0
+  //jumpTime = 0
   score = speedUps[speedUpCount] + 5// zorgen dat de functie niet opnieuw word aan geroepen
   frameRate(rate)
 }
@@ -328,8 +327,14 @@ function setSky() {
 }
 //score tot volgende speed up omzetten in rijen
 function scoreLeds() {
-  let scorePerRij = Math.round((speedUps[speedUpCount + 1] - speedUps[speedUpCount]) / h)//aantal punten nodig voor 1 rij
-
+  let scorePerRij = 0
+  if (speedUpCount == 0) {
+    scorePerRij = Math.floor(100/h)
+  } else {
+    scorePerRij = Math.floor((speedUps[speedUpCount] - speedUps[speedUpCount-1]) / h)//aantal punten nodig voor 1 rij
+    
+  }
+console.log('speedUpCount:', speedUpCount);
   if (score > oldScore + scorePerRij) {
     oldScore = score
     aantalRijen += 1
