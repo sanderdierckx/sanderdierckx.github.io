@@ -36,9 +36,9 @@ let levelupsound
 function setup() {
   matrix.init()
   soundFormats('mp3')
-  muziek = loadSound('Eric Skiff - Underclocked NO COPYRIGHT 8-bit Music + Background.mp3')
+  muziek = loadSound('Castlevania Bloodlines - 8-bit Reincarnated Soul Part 2 (Stage 1) on Famitracker.mp3')
   oofsound = loadSound("Roblox Death Sound - OOF Sound Effect edit.mp3")
-  levelupsound = loadSound('Super Mario Level Up SFX on Massive AAX CIU110.mp3')
+  levelupsound = loadSound('Level Up 8bit Sound Effects.mp3')
   frameRate(rate)
   calcObstakel(random(randomIntObstakel), "obstakel")// obstakel aan maken op random plaats (op de onderste tweedede tot vierde rijien)
   
@@ -258,7 +258,7 @@ function botsing() {
       if (obstakel == cor) {
         start = false
         oldTime = millis()
-        muziek.stop()
+        muziek.pause()
         oofsound.play()
         if (score > highScore) {
           highScore = score
