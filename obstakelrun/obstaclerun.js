@@ -49,7 +49,6 @@ function draw() {
   if (start == true) {
     if (muziek.isPlaying() == false) {
       muziek.play()
-  //muziek.volume(0.2)
     }
     if (jump == true || dive == true) {//zien of de speler gesprongen heeft of gebukt is 
       if (dive == true) {
@@ -258,7 +257,7 @@ function botsing() {
       if (obstakel == cor) {
         start = false
         oldTime = millis()
-        muziek.pause()
+        muziek.stop()
         oofsound.play()
         if (score > highScore) {
           highScore = score
@@ -282,6 +281,7 @@ function reset() {
   speedUpCount = 0
   playerNormal()
   calcObstakel(random(randomIntObstakel), "obstakel")
+  frameRate(rate)
 }
 /**
  * alle ledjes in de zelfde kleur zetten
@@ -321,7 +321,7 @@ function changeStats() {
   jumpDelay -= 100
   diveDelay -= 150
   jump = false
-  //jumpTime = 0
+  jumpTime = 0
   score = speedUps[speedUpCount] + 5// zorgen dat de functie niet opnieuw wordt aan geroepen
   frameRate(rate)
 }
@@ -351,7 +351,7 @@ function scoreLeds() {
   if (speedUpCount == 0) {
     scorePerRij = Math.floor(100/h)
   } else {
-    scorePerRij = Math.floor((speedUps[speedUpCount] - speedUps[speedUpCount-1]) / h)//aantal punten nodig voor 1 rij
+    scorePerRij = Math.floor(((speedUps[speedUpCount] - speedUps[speedUpCount-1]) / h))//aantal punten nodig voor 1 rij
     
   }
   if (score > oldScore + scorePerRij) {
