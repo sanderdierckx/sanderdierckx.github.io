@@ -60,7 +60,12 @@ function draw() {
 
         if (checkTime(oldTime, jumpDelay / 100)) {// als @jumpdelay milliseconden voorbij is naar beneden gaan
           jumpTime += jumpDelay / 10
-          jumpStart(Math.ceil(basisvorm(jumpDelay - 100, jumpTime)))
+          if (speedUpCount >= 3) {
+            jumpStart(Math.ceil(basisvorm(jumpDelay, jumpTime)))
+            
+          } else {
+            jumpStart(Math.ceil(basisvorm(jumpDelay-100, jumpTime)))
+          }
         }
       }
     }
@@ -318,10 +323,10 @@ function speedUp() {
 function changeStats() {
   playerNormal()
   rate += 1
-  jumpDelay -= 100
-  diveDelay -= 150
   jump = false
   jumpTime = 0
+  jumpDelay -= 100
+  diveDelay -= 150
   score = speedUps[speedUpCount] + 5// zorgen dat de functie niet opnieuw wordt aan geroepen
   frameRate(rate)
 }
