@@ -9,6 +9,8 @@ let bullets = []
 let enemys = []
 let healths = [0, "green", "rgb(0,255,234)", "rgb(0, 34, 255)", "rgb(170, 0, 255)", "rgb(255, 0, 0)"]
 let oldTime = 0
+let score = 0
+let play = true
 function setup(){
   matrix.init()
   frameRate(10)
@@ -16,22 +18,26 @@ function setup(){
 
 function draw(){
   matrix.clear()
-  checkHit()
-  setPlayer(playerCol)
-  if (checkTime(oldTime, 3000)) {
-    newWave()
-  }
-  bullets.forEach(b => {
-    if (b.row < 1) {
-      let bulletIndex = bullets.indexOf(b)
-      bullets.splice(bulletIndex, 1)
-      return
+  if (play) {
+    checkHit()
+    checkDeath()
+    setPlayer(playerCol)
+    if (checkTime(oldTime, 3000)) {
+      newWave()
     }
-    b.updateBullet()
-  })
-  enemys.forEach(e => {
-    e.showEnemy()
-  })
+    bullets.forEach(b => {
+      if (b.row < 1) {
+        let bulletIndex = bullets.indexOf(b)
+        bullets.splice(bulletIndex, 1)
+        return
+      }
+      b.updateBullet()
+    })
+    enemys.forEach(e => {
+      e.showEnemy()
+    })
+    
+  }
   matrix.show()
 }
 function showLed(row, col, state, Color) {
@@ -57,6 +63,14 @@ function keyPressed() {
   }
   if (keyCode === 32) {
     shoot()
+  }
+  if (keyCode === 82) {
+    play = true
+  }
+}
+function setAll(Color,state) {
+  for (let i = 0; i <= w * h - 1; i++){
+    setLedNr(i,state,Color)
   }
 }
 function getNumber(row, col) {
@@ -93,13 +107,24 @@ function checkHit() {
         e.health -= 1
         if (e.checkHealth()) {
           let enemyIndex = enemys.indexOf(e)
-        enemys.splice(enemyIndex, 1)
+          enemys.splice(enemyIndex, 1)
+          score += 1
+          console.log(score);
         }
         let bulletIndex = bullets.indexOf(b)
         bullets.splice(bulletIndex, 1)
       }
     })
   })
+}
+function checkDeath() {
+  enemys.forEach(e => {
+    if (e.row == 9) {
+      console.log("DEATH");
+      play = false
+      return
+      }
+  });
 }
 class bullet{
   constructor(col) {
