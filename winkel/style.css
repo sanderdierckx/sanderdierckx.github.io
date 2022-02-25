@@ -1,0 +1,33 @@
+#container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.itemBox{
+  display: block;
+  text-align: center;
+  width: 150px;
+  height: 300px;
+  background-color:lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+.itemBox form{
+  display: inline;
+  text-align: left;
+
+}
+#divLijst{
+  list-style: none;
+}
+.itemFoto{
+  width:150px;
+}
+#prijs{
+  font-size: xx-large;
+  font-weight: 900;
+  margin: 5px;
+}

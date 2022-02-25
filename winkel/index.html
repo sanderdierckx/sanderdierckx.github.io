@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/vue@3"></script>
+  <script defer src="products.js"></script>
+  <script defer src="winkel.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div id="container">
+      
+        <li id="divLijst" v-for="index in 11" :key="index">
+          <div class="itemBox">
+            <img class="itemFoto" :src="product[index].foto" alt="">
+            <form action="">
+              <p id="prijs">{{ product[index].prijs }}</p>
+                <p>{{ product[index].naam }}</p>
+                <p>{{ product[index].gewicht }}</p>
+            </form>
+          </div>
+          
+        </li>
+    
+
+    </div>
+  </div>
+</body>
+</html>
