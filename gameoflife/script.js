@@ -1,6 +1,6 @@
 let cells = []
 let cellSize = 25
-let gridWidth = 20
+let gridWidth = 50
 let gridHeight = 20
 let gameState = false
 function setup() {
@@ -69,6 +69,7 @@ function resetPressed() {
   gameState = false
   cells.forEach(c => {
     c.state = false
+    c.nextState = false
   });
   drawCells()
 }
