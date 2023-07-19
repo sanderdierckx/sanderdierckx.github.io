@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/p5"></script>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>game of life</title>
+</head>
+<div id="buttons">
+  <button class="button" id="startButton" onclick="startPressed()">start</button>
+  <button class="button" id="stopButton" onclick="stopPressed()">stop</button>
+  <button class="button" id="resetButton" onclick="resetPressed()">reset</button>
+  <button class="button" id="nextButton" onclick="nextPressed()">next</button>
+  <input id="slider" type="range" min="1" max="100" step="1" onchange="changeFrames(this.value)">
+</div>
+</body>
+</html>

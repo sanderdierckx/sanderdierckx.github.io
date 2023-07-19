@@ -1,0 +1,12 @@
+body{
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
+}
+#buttons{
+  display: flex;
+  flex-direction: column;
+}
+.button{
+  background-color: blue;
+}
