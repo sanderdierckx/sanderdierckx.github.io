@@ -3,6 +3,7 @@ let cellSize = 25
 let gridWidth = 50
 let gridHeight = 20
 let gameState = false
+let oldX,oldY
 function setup() {
   let canvas = createCanvas(cellSize*gridWidth, cellSize*gridHeight)
   let htmlCanvas = canvas.canvas;
@@ -15,7 +16,20 @@ function setup() {
   }
   drawCells()
 }
+function checkForEmptyBoard() {
+  let deadCount =0
+  cells.forEach(c => {
+    if (c.state==false) {
+      deadCount++
+    }
+  })
+  if (deadCount == (gridHeight * gridWidth)) {
+    gameState=false
+  }
+}
 function checkForCells(x, y) {
+  oldX = x
+  oldY = y
   cells.forEach(c => {
     if (c.xPos == x && c.yPos == y) {
       if (c.state) {
@@ -33,6 +47,7 @@ function changeFrames(value) {
 }
 function draw() {
   if (gameState) {
+    checkForEmptyBoard()
     //frameRate(document.getElementById("slider").value)
     cells.forEach(c => {
       c.calcNextState()
@@ -44,14 +59,24 @@ function draw() {
     drawCells()
   }
 }
-function mouseClicked() {
+function mouseClicked(params) {
+  doWhenClicked()
+}
+function mouseDragged() {
+doWhenClicked()
+}
+function doWhenClicked() {
   if (gameState) {
     return
   }
   xcor = Math.floor(mouseX / cellSize)
   ycor = Math.floor(mouseY / cellSize)
+  if (oldX == xcor && oldY == ycor) {
+    return
+  }
   checkForCells(xcor,ycor)
   drawCells()
+
 }
 function drawCells() {
   clear()
