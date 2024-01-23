@@ -1,0 +1,252 @@
+html {box-sizing: border-box;}
+*, *:before, *:after {box-sizing: inherit;}
+
+/* gebruikte kleuren:
+donkere kleur voor tekst, achtergrond en border: #193619
+lichte kleur voor achtergrond en voor tekst op donkere achtergrond: #ffedea
+roze kleur voor de links: #ff8bfe
+achtergrondkleur div.fig1, div.fig2 en div.fig3: #7d8e7c
+andere kleuren die in deze figuren worden gebruikt:#193619 en #ff8bfe 
+*/
+
+div.fig1, div.fig2, div.fig3 {
+    border: 1px solid #193619;
+    height: 15rem;
+    margin-bottom: 1rem;
+}
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #ffedea;
+}
+nav{
+    height: 6rem;
+    background-color: #193619;
+    padding: 1rem;
+}
+h1 a,h1{
+    color: #ffedea;
+}
+h1 a:nth-child(1){
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: block;
+    padding-bottom: 1rem;
+}
+.banner-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.banner1{
+    height:15rem;
+    width: 100vw;
+    background-image: url('examen-banner-1.png');
+    background-size: cover;
+    animation: slideshow 5s ease-in-out  infinite alternate;
+}
+.banner2{
+    transform: translateX(100vw);
+    height:15rem;
+    width: 100vw;
+    overflow:hidden;
+    background-image: url('examen-banner-2.png');
+    background-size: cover;
+    animation: slideshow 5s ease-in-out infinite alternate;
+}
+.banner3{
+    height:15rem;
+    width: 100vw;
+    transform: translateX(200vw);
+    overflow: hidden;
+    background-image: url('examen-banner-3.png');
+    background-size: cover;
+    animation: slideshow 5s ease-in-out infinite alternate;
+
+}
+.banner{
+    position: relative;
+}
+.caption{
+    height: 7rem;
+    position: absolute;
+    bottom: 2rem;
+    left:1rem;
+}
+.caption h2{
+    display: flex;
+    align-items: center;
+    color: #ffedea;
+    height: 3rem;
+    padding:0.5rem;
+    font-weight: 900;
+    background-color: #193619;
+    margin-bottom: 1rem;
+}
+.caption h3{
+    display: flex;
+    align-items: center;
+    color: #193619;
+    height: 3rem;
+    padding:0.5rem;
+    font-weight: 900;
+    background-color: #ffedea;
+}
+main > h3{
+    background-color: #193619;
+    height: 3rem;
+    padding: 1rem;
+    color: #ffedea;
+    font-size: 500;
+}
+h3 + ul{
+    padding: 1rem;
+}
+h3 + ul li{
+    border-bottom:solid 2px #193619;
+    margin-bottom: 1rem;
+}
+h3 + ul li:nth-child(3){
+border: none;
+}
+h3 + ul a{
+    padding: 1rem;
+    color: #ff8bfe;
+    padding-left: 0;
+    }
+h3 + ul li:nth-child(1) h2 a,h3 + ul li:nth-child(2) h2 a,h3 + ul li:nth-child(3) h2 a{
+    text-decoration: none;
+    color: #193619;
+    font-size: 1.2rem;
+    font-weight: 900;
+    padding-left: 0;
+}
+h3 + ul li:nth-child(1) h2,h3 + ul li:nth-child(2) h2,h3 + ul li:nth-child(3) h2{
+    margin-bottom: 1rem;
+    padding-left: 0;
+}
+h4,p{
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+}
+.fig1{
+    background-color: #7d8e7c;
+padding: 1rem;
+}
+.fig1 ul{
+    height: 100%;
+    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:1rem;
+}
+.fig1 ul li:nth-child(1),.fig1 ul li:nth-child(3),.fig1 ul li:nth-child(5){
+    background-color:#ff8bfe;
+}
+.fig1 ul li:nth-child(2),.fig1 ul li:nth-child(4),.fig1 ul li:nth-child(6){
+    background-color:#193619;
+}
+.fig2{
+    background-color: #7d8e7c;
+}
+.fig2 p {
+    height: 100%;
+    width: 100%;
+    background-image: repeating-linear-gradient(90deg,#ff8bfe 0,#ff8bfe 2rem,#193619 2rem , #193619 4rem);
+    clip-path: polygon(0 0, 50% 25%, 100% 0, 75% 50%, 100% 100%, 50% 75%, 0 100%, 25% 50%);
+}
+.fig3{
+    background-color: #7d8e7c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fig3 h2{
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ff8bfe;
+}
+footer{
+    height: 3rem;
+    background-color: #193619;
+    padding: 0.5rem;
+}
+footer p, footer a{
+    color: #ffedea;
+    text-decoration: none;
+}
+@media (min-width:1000px){
+    h3+ul li{
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 2fr 6fr 2fr;
+    }
+    .fig1,.fig2,.fig3{
+        width: 30vw;
+        height: 30rem;
+        grid-column: 1/2;
+grid-row: 1/3;
+    }
+    li > h2{
+    grid-column: 2/3;
+
+    }
+    li > h4{
+        grid-column: 3/4;
+grid-row: 1/3;
+    }
+    li > p{
+        grid-column: 2/3;
+
+    }
+    li > p + p{
+        grid-column: 2/3;
+    }
+.fig1 ul{
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.fig1 ul li{
+    border: none;
+}
+.fig1 ul li:nth-child(3){
+    grid-column: 4/5;
+    grid-row: 1/3;
+}
+.fig1 ul li:nth-child(4){
+grid-column: 3/4;
+grid-row: 1/3;
+}
+.fig1 ul li:nth-child(6){
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.fig1 ul li:nth-child(5){
+    grid-column: 2/3;
+    
+}
+}
+@media (min-width:1200px){
+    h3 + ul{
+        max-width: 1200px;
+        margin:0 auto 0 auto;
+    }
+    footer p{
+        width: 1200px;
+        margin:0 auto 0 auto;
+    }
+}
+@keyframes slideshow{
+0%{
+    transform: translate(0);
+}
+50%{
+    transform: translate(-100vw);
+}
+100%{
+    transform: translate(-200vw)
+}
+}
+
+/* tip! wees specifiek in je gebruik van selectors, bvb main > ul en main > ul > li. Want in div.fig1 zit nog een ul */
+
